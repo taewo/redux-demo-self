@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import calculate from './calculate';
+import activeValue from './reducer_selected_value'
+import data from './reducer_data';
 
 const reducer = combineReducers({
-  calculate,
+  activeValue,
+  data,
 });
 
 export default reducer;

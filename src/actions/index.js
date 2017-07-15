@@ -1,13 +1,8 @@
 import * as types from './ActionTypes';
 
-export const increment = () => {
+export function selectedValue(value) {
   return {
-    type: types.INCREMENT,
-  };
-};
-
-export const decrement = () => {
-  return {
-    type: types.DECREMENT,
+    type: types.SELECTED_VALUE,
+    value,
   };
 };

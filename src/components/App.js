@@ -1,21 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import Value from './Value';
-import Control from './Control';
-import { connect } from 'react-redux'
+import DataList from '../containers/Data-List';
+import DashBoard from '../containers/DashBoard';
+import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 const propTypes = {
-  handleIncrement: PropTypes.func,
-  handleDecrement: PropTypes.func,
-  number: PropTypes.number,
 };
 
-const logUndefined = (funcName) => { console.log(`${funcName} undefined`); };
-
 const defaultProps = {
-  handleIncrement: () => logUndefined('handleIncrement'),
-  handleDecrement: () => logUndefined('handleDecrement'),
-  number: -1,
 };
 
 class App extends Component {
@@ -25,12 +17,13 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Value
-          number={this.props.number}
+        App
+        <DataList
+          data={this.props.data}
+          selectedValue={this.props.handleSelectedValue}
         />
-        <Control
-          addNum={this.props.handleIncrement}
-          subNum={this.props.handleDecrement}
+        <DashBoard
+          activeValue={this.props.activeValue}
         />
       </div>
     );
@@ -41,14 +34,14 @@ App.defaultProps = defaultProps;
 
 const mapStateToProps = (state) => {
   return {
-    number: state.calculate.number,
+    data: state.data,
+    activeValue: state.activeValue,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleIncrement: () => { dispatch(actions.increment()); },
-    handleDecrement: () => { dispatch(actions.decrement()); },
+    handleSelectedValue: (value) => { dispatch(actions.selectedValue(value)); },
   };
 };
 
